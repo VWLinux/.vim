@@ -11,7 +11,6 @@ Plugin 'vim-airline/vim-airline'              " Plugin para inserir uma barra de
 Plugin 'vim-airline/vim-airline-themes'       " Plugin para mudar o tema da barra de status
 Plugin 'tpope/vim-commentary'                 " Adicionar linhas de comentarios de uma unica vez
 Plugin 'godlygeek/tabular'                    " Cria tabulações multiplas
-Plugin 'jiangmiao/auto-pairs'                 " Autocompletar ou fechar {[(' automaticamente
 Plugin 'scrooloose/syntastic'                 " Compilador de códigos para achar erros
 Plugin 'terryma/vim-multiple-cursors'         " Criar multiplas coisas ao mesmo tempo
 Plugin 'ntpeters/vim-better-whitespace'       " Mostrar os espaços em branco
@@ -20,18 +19,33 @@ Plugin 'MarcWeber/vim-addon-mw-utils'         " Plugin para rodar os snippers de
 Plugin 'tomtom/tlib_vim'                      " Plugin para rodar os snippers de várias linguagens
 Plugin 'garbas/vim-snipmate'                  " Plugin para rodar os snippers de várias linguagens
 Plugin 'VictorArnaud/vim-snippets'            " Plugin de snippets para várias linguagens criados por mim
+Plugin 'pangloss/vim-javascript'              " JS hightlight
+Plugin 'python-mode/python-mode'							" Python IDE para o vim
+Plugin 'leafgarland/typescript-vim'           " Angular2 sintaxe hightlight
+Plugin 'Quramy/vim-js-pretty-template'        " Angular2 html string hightlight
 call vundle#end()
 filetype plugin indent on
 
-" Identação
-set ai                    " Autoidentação
-set expandtab             " Cria espações no lugar de tabulação
-set shiftwidth=2          " Cria 2 espações na tabulação
-set tabstop=2             " Setar o tamanho da tabulação
-set showmatch		          " Mostra caracteres ({[ quando fechados
-set si                    " Reconhece sua identação
-set linebreak             " Quebre as linhas sem dividir as palavras
-set wrap tw=145           " Quebrar linha na coluna x
+" Identação outros arquivos
+set tabstop=2         " Seta o tamanho da tabulação para 2
+set expandtab         " Crua espaços no lugar de tabulações
+set showmatch		      " Mostra caracteres ({[ quando fechados
+set linebreak         " Quebre as linhas sem dividir as palavras
+
+" Identação python
+au BufNewFile,BufRead *.py
+    \ set tabstop=4         " Seta o tamanho da tabulação para 4
+    \ set softtabstop=4
+    \ set shiftwidth=4			" Quando usar os comandos >> ou <<, indentar em 4 espaços
+    \ set textwidth=79      " Limite de caracteres 80
+    \ set autoindent        " Identação automatica
+    \ set fileformat=unix   " Armazena o arquivo em formato unix
+
+" Identação javascript, html e css
+au BufNewFile,BufRead *.js, *.html, *.css
+    \ set tabstop=2         " Seta o tamanho da tabulação para 2
+    \ set softtabstop=2
+    \ set shiftwidth=2			" Quando usar os comandos >> ou <<, indentar em 4 espaços
 
 " Cores
 set background=dark       " Setar a cor de fundo
@@ -41,13 +55,18 @@ set cursorline            " Highlight na linha do cursor
 set cursorcolumn          " Highlight na coluna do cursor
 
 " Linha númeradas
-set nu                    "Enumerar as linhas
+set number                " Enumerar as linhas
+
+" Collapse metodos e classes utilizando espaco
+set foldmethod=indent
+set foldlevel=99
+nnoremap <space> za
 
 " Buscas
 set incsearch             " Vai deixando o cursor na busca feita
 set is                    " Incrementa a busca
 set hls                   " Deixa a busca destacada
-set ic                    " Ignora letras maiusculas de minusculas
+set ignorecase            " Ignora letras maiusculas de minusculas
 
 " Outros
 set mouse=a               " Utilizer o mouse
@@ -56,23 +75,22 @@ set noswapfile            " Evita criar arquivos tmp .swp
 set nowritebackup         " Evita arquivos temporarios ~
 set laststatus=2          " Mostrar a barra de status sempre
 set showcmd               " Mostrar os comandos de execução atual
+set encoding=utf-8        " Suportar linguagem portugues
 
 " VIM-AIRLINE
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_enable_branch = 1
-let g:airline#themes#molokai#palette = {}
-let g:airline_powerline_fonts = 0
-let g:airline_enable_syntastic  = 1
+let g:airline#extensions#tabline#enabled = 1      " Tema da tabulação de cima
+let g:airline_theme='jellybeans'                  " Tema geral
 
-" AUTO-PAIR
-let g:AutoPairsFlyMode = 0                   " Tira o salto que da ao tentar fechar um colchete, possibilitando fecha-lo
-
-" SYNTASTIC
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
-
+" Pymode
+let g:pymode_python = 'python3'                   " Colocar o pymode para python3
+let g:pymode_run_bind = '<C-r>'                   " Rodar o código com Ctrl + r
+let g:pymode_breakpoint_bind = '<C-b>'            " Inserir breakpoint com Ctrl + b
+let g:pymode_rope_completion_bind = '<C-Space>'   " Autocompletar com Ctrl + spaço
+let g:pymode_lint_cwindow = 0                     " Não abrir nova aba com o lint
+let g:pymode_options_max_line_length = 120        " Modificar o tamanho da linha pra 120
+let g:pymode_options_colorcolumn = 1              " Inserir um marcador no final da linha
+let g:pymode_trim_whitespaces = 1                 " Ao salvar retirar os espaços em branco
+let g:pymode_rope_show_doc_bind = '<C-k>'         " Show documentarion of method/class
+let g:pymode_rope_goto_definition_bind = '<C-d>'  " Vai para a definição do método/classe
+let g:pymode_rope_complete_on_dot = 0             " Ativar o autocomplete no .
+let g:pymode_syntax_all = 1                       " Ativer o highlights do python
