@@ -83,14 +83,28 @@ let g:airline_theme='jellybeans'                  " Tema geral
 
 " Pymode
 let g:pymode_python = 'python3'                   " Colocar o pymode para python3
-let g:pymode_run_bind = '<C-r>'                   " Rodar o código com Ctrl + r
-let g:pymode_breakpoint_bind = '<C-b>'            " Inserir breakpoint com Ctrl + b
 let g:pymode_rope_completion_bind = '<C-Space>'   " Autocompletar com Ctrl + spaço
-let g:pymode_lint_cwindow = 0                     " Não abrir nova aba com o lint
-let g:pymode_options_max_line_length = 120        " Modificar o tamanho da linha pra 120
+let g:pymode_rope_show_doc_bind = '<C-k>'         " Show documentation of method/class
+let g:pymode_rope_goto_definition_bind = '<C-d>'  " Vai para a definição do método/classe
+let g:pymode_options_max_line_length = 79         " Modificar o tamanho da linha pra 79
 let g:pymode_options_colorcolumn = 1              " Inserir um marcador no final da linha
 let g:pymode_trim_whitespaces = 1                 " Ao salvar retirar os espaços em branco
-let g:pymode_rope_show_doc_bind = '<C-k>'         " Show documentarion of method/class
-let g:pymode_rope_goto_definition_bind = '<C-d>'  " Vai para a definição do método/classe
-let g:pymode_rope_complete_on_dot = 0             " Ativar o autocomplete no .
 let g:pymode_syntax_all = 1                       " Ativer o highlights do python
+let g:pymode_virtualenv = 1                       " Faz o pymode detectar o ambiente virtual
+let g:pymode_lint = 1                             " Ativa o modo de verificação do código
+let g:pymode_lint_unmodified = 1                  " Verifica o código a cada salvamento
+let g:pymode_lint_message = 1                     " Mostra mensagem de erro se o cursor passar pelo erro
+let g:pymode_lint_checkers = ['pep8', 'pylint']   " Verificadores de código
+let g:pymode_lint_ignore = ""                     " Caso precise retirar algum validador de código
+
+" Desativar algumas configurações do pymode
+let g:pymode_folding = 0                          " Tirar as dobraduras
+let g:pymode_motion = 0                           " Tirar alguns atalhos que não uso
+let g:pymode_doc = 0                              " Tirar o pydoc e deixar o doc_bind
+let g:pymode_run = 0                              " Retirar a execução do programa pelo vim
+let g:pymode_breakpoint = 0                       " Retira a inserção de breakpoints pelo vim
+let g:pymode_lint_on_fly = 0                      " Verifica o código ao edita-lo
+let g:pymode_lint_on_write = 0                    " Verifica o código a cada salvamento se o arquivo estiver sido modificado
+let g:pymode_lint_cwindow = 0                     " Não abrir nova aba com o lint
+let g:pymode_rope_complete_on_dot = 0             " Ativar o autocomplete no .
+let g:pymode_syntax_slow_sync = 1                 " Desativar para hardwares fracos
