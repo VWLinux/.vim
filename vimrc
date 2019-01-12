@@ -11,7 +11,6 @@ Plugin 'vim-airline/vim-airline'              " Plugin para inserir uma barra de
 Plugin 'vim-airline/vim-airline-themes'       " Plugin para mudar o tema da barra de status
 Plugin 'tpope/vim-commentary'                 " Adicionar linhas de comentarios de uma unica vez
 Plugin 'godlygeek/tabular'                    " Cria tabulações multiplas
-Plugin 'scrooloose/syntastic'                 " Compilador de códigos para achar erros
 Plugin 'terryma/vim-multiple-cursors'         " Criar multiplas coisas ao mesmo tempo
 Plugin 'ntpeters/vim-better-whitespace'       " Mostrar os espaços em branco
 Plugin 'airblade/vim-gitgutter'               " Plugin para mostrar modificações no git
@@ -80,8 +79,8 @@ autocmd vimenter ?* NERDTree
 " autocmd bufenter ?* if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Syntastic
-let g:syntastic_python_checkers = ['flake8']  " Inserir o flake8 como folha de estilho (pyflake + pep8)
-let g:syntastic_auto_loc_list = 0             " Janela de erros não será aberta
-let g:syntastic_check_on_open = 0             " Verifica quando abre o arquivo
-let g:syntastic_check_on_wq = 1               " Verifica quando salva o arquivo
-let g:syntastic_python_flake8_post_args='--ignore=E501' " Ignora linha muito longa
+" let g:syntastic_python_checkers = ['flake8']  " Inserir o flake8 como folha de estilho (pyflake + pep8)
+" let g:syntastic_auto_loc_list = 0             " Janela de erros não será aberta
+" let g:syntastic_check_on_open = 0             " Verifica quando abre o arquivo
+" let g:syntastic_check_on_wq = 1               " Verifica quando salva o arquivo
+" let g:syntastic_python_flake8_post_args='--ignore=E501' " Ignora linha muito longa
